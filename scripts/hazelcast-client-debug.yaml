@@ -1,0 +1,9 @@
+hazelcast-client:
+  cluster-name: seatunnel-debug
+  connection-strategy:
+    connection-retry:
+      cluster-connect-timeout-millis: 300000
+  properties:
+    hazelcast.client.invocation.timeout.seconds: 3600
+    hazelcast.client.heartbeat.timeout: 3600000
+    hazelcast.client.heartbeat.interval: 60000

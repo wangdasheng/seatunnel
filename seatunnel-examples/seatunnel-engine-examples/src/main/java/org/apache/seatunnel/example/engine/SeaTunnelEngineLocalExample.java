@@ -32,11 +32,28 @@ public class SeaTunnelEngineLocalExample {
     static {
         // https://logging.apache.org/log4j/2.x/manual/simple-logger.html#isThreadContextMapInheritable
         System.setProperty("log4j2.isThreadContextMapInheritable", "true");
+
+        // === DEBUG: 延长 Hazelcast 超时，避免断点调试时超时断开 ===
+        // 客户端调用超时 (默认 120s，改为 1 小时)
+        System.setProperty("hazelcast.client.invocation.timeout.seconds", "3600");
+        // 服务端调用超时
+        System.setProperty("hazelcast.invocation.timeout.seconds", "3600");
+        // 操作调用超时
+        System.setProperty("hazelcast.operation.call.timeout.millis", "3600000");
+        // 心跳间隔延长，减少心跳频率
+        System.setProperty("hazelcast.heartbeat.interval.seconds", "60");
+        // 允许无心跳的最大时间 (默认 180s → 1 小时)
+        System.setProperty("hazelcast.max.no.heartbeat.seconds", "3600");
+        // 客户端心跳
+        System.setProperty("hazelcast.client.heartbeat.timeout", "3600000");
+        System.setProperty("hazelcast.client.heartbeat.interval", "60000");
+        // 使用 deadline 检测器代替 phi-accrual (更简单，不会误判)
+        System.setProperty("hazelcast.heartbeat.failuredetector.type", "deadline");
     }
 
     public static void main(String[] args)
             throws FileNotFoundException, URISyntaxException, CommandException {
-        String configurePath = args.length > 0 ? args[0] : "/examples/test_sql_lookup.conf";
+        String configurePath = args.length > 0 ? args[0] : "/examples/cdc_split_table.conf";
         String configFile = getTestConfigFile(configurePath);
         ClientCommandArgs clientCommandArgs = new ClientCommandArgs();
         clientCommandArgs.setConfigFile(configFile);

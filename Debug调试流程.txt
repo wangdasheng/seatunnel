@@ -1,0 +1,9 @@
+main 线程 → 提交作业 → 返回
+CooperativeTaskWorker 线程 → 循环调用 SourceSeaTunnelTask.call() → collect() → reader.pollNext()
+BlockingWorker 线程 → 执行阻塞型 Task（如 CDC 的 Debezium 引擎在独立线程）
+CheckpointCoordinator 线程 → 定时触发 checkpoint
+
+
+
+
+CDC 的 Debezium 引擎在独立线程

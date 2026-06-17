@@ -87,6 +87,18 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- CDC Sync framework (business plugin transform) -->
+        <dependency>
+            <groupId>org.apache.seatunnel</groupId>
+            <artifactId>seatunnel-cdc-sync-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.seatunnel</groupId>
+            <artifactId>seatunnel-cdc-sync-demo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- MySQL JDBC Driver -->
         <dependency>
             <groupId>mysql</groupId>
