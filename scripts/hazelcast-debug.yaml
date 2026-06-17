@@ -1,0 +1,25 @@
+hazelcast:
+  cluster-name: seatunnel-debug
+  network:
+    port:
+      auto-increment: true
+      port: 5801
+    join:
+      auto-detection:
+        enabled: false
+      multicast:
+        enabled: false
+      tcp-ip:
+        enabled: false
+  properties:
+    hazelcast.invocation.max.retry.count: 200
+    hazelcast.invocation.retry.pause.millis: 1000
+    hazelcast.invocation.timeout.seconds: 3600
+    hazelcast.operation.call.timeout.millis: 3600000
+    hazelcast.client.invocation.timeout.seconds: 3600
+    hazelcast.client.heartbeat.timeout: 3600000
+    hazelcast.max.no.heartbeat.seconds: 3600
+    hazelcast.heartbeat.interval.seconds: 60
+    hazelcast.heartbeat.failuredetector.type: deadline
+    hazelcast.tcp.join.port.try.count: 5
+    hazelcast.operation.generic.thread.count: 10
